@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">TV CAST</string>
+    <string name="title">Screen Mirroring</string>
+    <string name="sub_title">For All TV</string>
+    <string name="lets_start">Let\'s Start</string>
+    <string name="tv_item_name">Tv Item Name</string>
+    <string name="others">Others</string>
+    <string name="connection_mode">Connection Mode</string>
+    <string name="auto_mode">Auto Mode</string>
+    <string name="manual_mode">Manual Mode</string>
+    <string name="next">Next</string>
+    <string name="scanning_for_tv">Scanning for TVs</string>
+    <string name="detecting_model">Detecting model</string>
+    <string name="installing_drivers">Installing drivers</string>
+    <string name="connecting">Connecting</string>
+    <string name="ok">Ok</string>
+    <string name="step">Step:</string>
+    <string name="tv_and_mobile_same_wifi">TV and Mobile should be on same wifi network</string>
+    <string name="miracast_display_enabled">MiracastDisplay should be enabled on the TV</string>
+    <string name="click_start_and_wifi_display">Click \'start\' and make sure wireless display option is enabled</string>
+    <string name="start">Start</string>
+    <string name="guide">Guide</string>
+    <string name="instruction">Instruction:</string>
+    <string name="turn_on_tv">Turn on your smart TV</string>
+    <string name="both_device_connect_automatically">Both devices will connect automatically</string>
+    <string name="wifi_permission_dialog">Your wifi connection is disabled. Please connect turn on wifi from your phone to connect with your TV</string>
+    <string name="sorry_no_wifi_connection">Sorry, Your phone\'s wifi connection is disabled. To use this app, please turn on your phone\'s wifi connection.</string>
+    <string name="mirroring_assistant">Screen Mirroring Assistant</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="please_rate">Please rate</string>
+    <string name="a_moment_to_rate">Thanks for using this app. Please take a moment to rate it.</string>
+    <string name="cancel">Cancel</string>
+    <string name="rate_it">Rate it</string>
+    <string name="click_back_again">Please click BACK again to exit</string>
+    <string name="read_from_online">Read From Online</string>
+    <string name="choose_a_browser">Please select a browser</string>
+    <string name="thank_you">Thank You</string>
+    <string name="submit">Submit</string>
+    <string name="never">Never</string>
+    <string name="later">Later</string>
+    <string name="app_feedback_title">Rate App!</string>
+    <string name="app_feedback_message">Please help us to improve the app by giving 5 star rating.</string>
+    <string name="home_activity_instruction">Screen mirroring requires your phone and target device to connect to the same Wifi.</string>
+    <string name="location_cancel_message">To get connected Wifi name, Please turn on location and grant permission, Thank you.</string>
+    <string name="privacy_policy_description">
+Privacy Policy for tv cast ultimate
+
+This privacy policy governs your use of the software application tv cast ultimate ("Application") for mobile devices that was created by Star tm. The Application is a web browser which allows you to send videos to various streaming devices.
+
+What information does the Application obtain and how is it used?
+
+We do not collect personally identifiable information about you. In other words, we do not collect information such as your name, address, phone number or email address.
+
+We do not knowingly contact or collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us so we can promptly obtain parental consent or remove the information.
+
+In addition, the Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile devices unique device ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browsers you use, and information about the way you use the Application.
+
+This Application does not collect precise information about the location of your mobile device however you may allow individual websites to access your location.
+    </string>
+
+
+
+
+</resources>
