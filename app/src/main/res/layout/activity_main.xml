@@ -21,6 +21,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/wifiInfoCardView"
         app:layout_constraintTop_toBottomOf="@+id/instructionTextView"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_5sdp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardUseCompatPadding="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -35,8 +39,9 @@
                 android:layout_height="@dimen/_50sdp"/>
             <TextView
                 android:id="@+id/wifiSsidNameTextView"
-                android:text="@string/app_name"
-                android:textColor="@color/colorGreen"
+                android:text="@string/wifi_not_connected"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -39,6 +39,7 @@
     <string name="never">Never</string>
     <string name="later">Later</string>
     <string name="app_feedback_title">Rate App!</string>
+    <string name="wifi_not_connected">WiFi not connected</string>
     <string name="app_feedback_message">Please help us to improve the app by giving 5 star rating.</string>
     <string name="home_activity_instruction">Screen mirroring requires your phone and target device to connect to the same Wifi.</string>
     <string name="location_cancel_message">To get connected Wifi name, Please turn on location and grant permission, Thank you.</string>

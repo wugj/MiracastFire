@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var wifiManager: WifiManager
+    private var connectivityManager: ConnectivityManager?=null
+    private lateinit var networkCallback: ConnectivityManager.NetworkCallback
     private lateinit var wifiInfo: WifiInfo
     private val ACTION_WIFI_DISPLAY_SETTINGS : String = "android.settings.WIFI_DISPLAY_SETTINGS"
     private var activity: Activity? = null
@@ -68,6 +70,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
     private fun initAll() {
         wifiManager= applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            connectivityManager = applicationContext.getSystemService(ConnectivityManager::class.java)
+        }
         mContext = this
         activity = this
 
@@ -78,36 +83,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
     private fun getConnectedWifiInfo() {
         if (wifiManager.isWifiEnabled) {
             Log.d("Abdullah","My version code is:- "+Build.VERSION.SDK_INT)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (Build.VERSION.SDK_INT >= 29) {
                 var request: NetworkRequest =
                     NetworkRequest.Builder()
                         .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
                         .build()
-                var connectivityManager: ConnectivityManager =
-                    applicationContext.getSystemService(ConnectivityManager::class.java)
-                var networkCallback: ConnectivityManager.NetworkCallback = object:ConnectivityManager.NetworkCallback() {
+
+                networkCallback = object:ConnectivityManager.NetworkCallback(FLAG_INCLUDE_LOCATION_INFO) {
                     override fun onAvailable(network : Network) {
-                        Log.d("Abdullah", "The default network is now: " + network)
+
                     }
 
                     override fun onLost(network : Network) {
-                        Log.d("Abdullah", "The application no longer has a default network. The last default network was " + network)
+
                     }
 
                     override fun onCapabilitiesChanged(network : Network, networkCapabilities : NetworkCapabilities) {
-                        Log.d("Abdullah", "The default network changed capabilities: " + networkCapabilities)
+                        wifiInfo=networkCapabilities.transportInfo as WifiInfo
+                        binding.wifiSsidNameTextView.text=wifiInfo.ssid
                     }
 
                     override fun onLinkPropertiesChanged(network : Network, linkProperties : LinkProperties) {
-                        Log.d("Abdullah", "The default network changed link properties: " + linkProperties)
+
                     }
                 }
-                connectivityManager.requestNetwork(request, networkCallback); // For request
-                connectivityManager.registerNetworkCallback(request, networkCallback); // For listen
+                connectivityManager?.requestNetwork(request, networkCallback) // For request
+                connectivityManager?.registerNetworkCallback(request, networkCallback) // For listen
             } else {
                 wifiInfo=wifiManager.connectionInfo
+                binding.wifiSsidNameTextView.text=wifiInfo.ssid
             }
-            binding.wifiSsidNameTextView.text=wifiInfo.ssid
         }
     }
 
@@ -242,6 +247,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
             shortToast(resources.getString(R.string.thank_you))
             super.onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        connectivityManager?.unregisterNetworkCallback(networkCallback)
+        super.onDestroy()
     }
 
 
