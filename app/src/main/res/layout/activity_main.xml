@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/wifi"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"/>
             <TextView
@@ -58,5 +58,31 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:background="@drawable/general_button_background"
         android:text="@string/start" />
-
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sliderRootCardView"
+        app:layout_constraintTop_toBottomOf="@+id/widiBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardElevation="@dimen/_5sdp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            app:sliderAnimationDuration="3000"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorAnimationDuration="1000"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="@dimen/_12sdp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="@dimen/_5sdp"
+            app:sliderIndicatorRadius="@dimen/_5sdp"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="#FFF"
+            app:sliderScrollTimeInSec="3"
+            app:sliderStartAutoCycle="true" />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

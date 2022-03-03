@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Client/Android/Melon (Ashraful)/Miracast/app/src/main/res/drawable/bg_overlay.xml" value="0.139" />
         <entry key="..\:/Client/Android/Melon (Ashraful)/Miracast/app/src/main/res/layout/activity_main.xml" value="0.21481481481481482" />
         <entry key="..\:/Client/Android/Melon (Ashraful)/Miracast/app/src/main/res/layout/activity_privacy_policy.xml" value="0.21481481481481482" />
         <entry key="..\:/Client/Android/Melon (Ashraful)/Miracast/app/src/main/res/layout/activity_splash.xml" value="0.23641304347826086" />
+        <entry key="..\:/Client/Android/Melon (Ashraful)/Miracast/app/src/main/res/layout/image_slider_layout_item.xml" value="0.21481481481481482" />
         <entry key="..\:/Client/Android/Melon (Ashraful)/Miracast/app/src/main/res/menu/toolbar_menu.xml" value="0.27291666666666664" />
       </map>
     </option>

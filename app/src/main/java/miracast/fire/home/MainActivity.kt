@@ -20,6 +20,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
+import com.smarteist.autoimageslider.SliderAnimations
 import com.urapp.myappratinglibrary.AppRatingDialog
 import com.urapp.myappratinglibrary.listener.RatingDialogListener
 import miracast.fire.DeviceSpecs
@@ -28,6 +30,7 @@ import miracast.fire.Utils.longToast
 import miracast.fire.Utils.openAppLink
 import miracast.fire.Utils.shortToast
 import miracast.fire.databinding.ActivityMainBinding
+import miracast.fire.model.SliderItem
 import miracast.fire.privacy_policy.PrivacyPolicyActivity
 
 
@@ -39,10 +42,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
     private lateinit var networkCallback: ConnectivityManager.NetworkCallback
     private lateinit var wifiInfo: WifiInfo
     private val ACTION_WIFI_DISPLAY_SETTINGS : String = "android.settings.WIFI_DISPLAY_SETTINGS"
-    private var activity: Activity? = null
-    private var mContext: Context? = null
     var doubleBackToExitPressedOnce = false
     private val MY_PERMISSIONS_ACCESS_FINE_LOCATION: Int=101
+    private lateinit var sliderAdapter: SliderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,15 +54,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
         initAll()
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),MY_PERMISSIONS_ACCESS_FINE_LOCATION)
-            } else {
-                getConnectedWifiInfo()
-            }
-        } else {
-            getConnectedWifiInfo()
-        }
+
 
 
 
@@ -69,27 +63,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
 
     private fun initAll() {
+        sliderAdapter=SliderAdapter(this)
         wifiManager= applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager = applicationContext.getSystemService(ConnectivityManager::class.java)
         }
-        mContext = this
-        activity = this
 
         binding.widiBtn.setOnClickListener(this)
+        binding.imageSlider.setSliderAdapter(sliderAdapter)
+        binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
+        binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+        binding.imageSlider.startAutoCycle()
+
+        for(i in 1..5) {
+            val sliderItem: SliderItem= SliderItem(R.drawable.ic_launcher, "Test title is:- $i")
+            sliderAdapter.addItem(sliderItem)
+        }
 
     }
 
     private fun getConnectedWifiInfo() {
         if (wifiManager.isWifiEnabled) {
-            Log.d("Abdullah","My version code is:- "+Build.VERSION.SDK_INT)
-            if (Build.VERSION.SDK_INT >= 29) {
+            if (Build.VERSION.SDK_INT >= 23) {
                 var request: NetworkRequest =
                     NetworkRequest.Builder()
                         .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
                         .build()
 
-                networkCallback = object:ConnectivityManager.NetworkCallback(FLAG_INCLUDE_LOCATION_INFO) {
+                networkCallback = object:ConnectivityManager.NetworkCallback() {  // FLAG_INCLUDE_LOCATION_INFO (into constructor)
                     override fun onAvailable(network : Network) {
 
                     }
@@ -99,7 +100,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
                     }
 
                     override fun onCapabilitiesChanged(network : Network, networkCapabilities : NetworkCapabilities) {
-                        wifiInfo=networkCapabilities.transportInfo as WifiInfo
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            wifiInfo=networkCapabilities.transportInfo as WifiInfo
+                        } else {
+                            wifiInfo=wifiManager.connectionInfo
+                        }
                         binding.wifiSsidNameTextView.text=wifiInfo.ssid
                     }
 
@@ -249,9 +254,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
         }
     }
 
-    override fun onDestroy() {
+    override fun onPause() {
+        super.onPause()
         connectivityManager?.unregisterNetworkCallback(networkCallback)
-        super.onDestroy()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),MY_PERMISSIONS_ACCESS_FINE_LOCATION)
+            } else {
+                getConnectedWifiInfo()
+            }
+        } else {
+            getConnectedWifiInfo()
+        }
     }
 
 
