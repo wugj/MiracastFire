@@ -67,6 +67,7 @@ dependencies {
 
     implementation 'com.github.Abdullah-563014:MyAppRatingLibrary:1.1'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'com.github.ibrahimsn98:android-particles:2.0'
 
     // for kotlin coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'

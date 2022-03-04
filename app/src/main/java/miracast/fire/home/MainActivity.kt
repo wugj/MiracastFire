@@ -54,7 +54,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
         initAll()
 
-
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),MY_PERMISSIONS_ACCESS_FINE_LOCATION)
+            } else {
+                getConnectedWifiInfo()
+            }
+        } else {
+            getConnectedWifiInfo()
+        }
 
 
 
@@ -256,20 +264,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
     override fun onPause() {
         super.onPause()
-        connectivityManager?.unregisterNetworkCallback(networkCallback)
+        binding.particleView.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),MY_PERMISSIONS_ACCESS_FINE_LOCATION)
-            } else {
-                getConnectedWifiInfo()
-            }
-        } else {
-            getConnectedWifiInfo()
-        }
+        binding.particleView.resume()
+    }
+
+    override fun onDestroy() {
+        connectivityManager?.unregisterNetworkCallback(networkCallback)
+        super.onDestroy()
     }
 
 

@@ -6,7 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.MainActivity">
-
+    <me.ibrahimsn.particle.ParticleView
+        android:id="@+id/particleView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:particleCount="60"
+        app:particleMinRadius="5"
+        app:particleMaxRadius="15"
+        app:particlesBackgroundColor="#23262a"
+        app:particleColor="@android:color/holo_green_dark"
+        app:particleLineColor="@android:color/holo_green_dark"
+        app:particleLinesEnabled="true" />
     <TextView
         android:id="@+id/instructionTextView"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/instructionTextView"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp"
-        app:cardBackgroundColor="@color/colorWhite"
+        app:cardBackgroundColor="@android:color/holo_green_dark"
         app:cardUseCompatPadding="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -41,7 +55,7 @@
                 android:id="@+id/wifiSsidNameTextView"
                 android:text="@string/wifi_not_connected"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorWhite"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
