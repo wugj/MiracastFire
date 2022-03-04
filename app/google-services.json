@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "700673255430",
+    "project_id": "miracastfire",
+    "storage_bucket": "miracastfire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700673255430:android:50031f170e644405ed3b87",
+        "android_client_info": {
+          "package_name": "miracast.fire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700673255430-lkdn59fatag0s31ddjdki292v8vk1r24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMa5yi5pybVZheIPNCiQVIzKEJH2LuMLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700673255430-lkdn59fatag0s31ddjdki292v8vk1r24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,6 +9,7 @@ import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.Menu
@@ -39,8 +40,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
     private lateinit var binding : ActivityMainBinding
     private lateinit var wifiManager: WifiManager
     private var connectivityManager: ConnectivityManager?=null
-    private lateinit var networkCallback: ConnectivityManager.NetworkCallback
-    private lateinit var wifiInfo: WifiInfo
+    private var networkCallback: ConnectivityManager.NetworkCallback?=null
+    private var wifiInfo: WifiInfo?=null
     private val ACTION_WIFI_DISPLAY_SETTINGS : String = "android.settings.WIFI_DISPLAY_SETTINGS"
     var doubleBackToExitPressedOnce = false
     private val MY_PERMISSIONS_ACCESS_FINE_LOCATION: Int=101
@@ -63,9 +64,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
         } else {
             getConnectedWifiInfo()
         }
-
-
-
 
     }
 
@@ -109,22 +107,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
                     override fun onCapabilitiesChanged(network : Network, networkCapabilities : NetworkCapabilities) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            wifiInfo=networkCapabilities.transportInfo as WifiInfo
+                            try {
+                                wifiInfo=networkCapabilities.transportInfo as WifiInfo
+                            } catch (e: Exception) {}
                         } else {
                             wifiInfo=wifiManager.connectionInfo
                         }
-                        binding.wifiSsidNameTextView.text=wifiInfo.ssid
+                        binding.wifiSsidNameTextView.text=wifiInfo?.ssid
                     }
 
                     override fun onLinkPropertiesChanged(network : Network, linkProperties : LinkProperties) {
 
                     }
                 }
-                connectivityManager?.requestNetwork(request, networkCallback) // For request
-                connectivityManager?.registerNetworkCallback(request, networkCallback) // For listen
+                connectivityManager?.requestNetwork(request, networkCallback!!) // For request
+                connectivityManager?.registerNetworkCallback(request, networkCallback!!) // For listen
             } else {
                 wifiInfo=wifiManager.connectionInfo
-                binding.wifiSsidNameTextView.text=wifiInfo.ssid
+                binding.wifiSsidNameTextView.text=wifiInfo?.ssid
             }
         }
     }
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
     }
 
     private fun showWifiOnAlertDialog() {
-        val builder : AlertDialog.Builder=AlertDialog.Builder(this)
+        val builder : AlertDialog.Builder=AlertDialog.Builder(this,R.style.MyDialogTheme)
         builder.setCancelable(false)
         builder.setMessage(resources.getString(R.string.wifi_permission_dialog))
         builder.setPositiveButton(resources.getString(R.string.ok)) { dialog, which ->
@@ -273,7 +273,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
     }
 
     override fun onDestroy() {
-        connectivityManager?.unregisterNetworkCallback(networkCallback)
+        try {
+            if (networkCallback !=null) {
+                connectivityManager?.unregisterNetworkCallback(networkCallback!!)
+            }
+        } catch (e: Exception) {}
         super.onDestroy()
     }
 
