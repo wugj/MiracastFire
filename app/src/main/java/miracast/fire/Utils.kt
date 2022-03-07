@@ -2,6 +2,7 @@ package miracast.fire
 
 import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -10,18 +11,24 @@ import android.widget.Toast
 
 object Utils {
     private val preferenceName : String="CastSharedPreference"
+    var sharedPreferences: SharedPreferences?=null
+
+    private fun initSharedPref(context: Context): SharedPreferences {
+        if (sharedPreferences==null) {
+            sharedPreferences=context.getSharedPreferences(preferenceName,MODE_PRIVATE)
+        }
+        return sharedPreferences!!
+    }
 
 
-    public fun saveIntToStorage(context: Context, key: String, value: Int) {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putInt(key, value)
+    fun setBooleanToStorage(context: Context,key: String, value: Boolean) {
+        val editor: SharedPreferences.Editor=initSharedPref(context).edit()
+        editor.putBoolean(key,value)
         editor.apply()
     }
 
-    public fun getIntFromStorage(context: Context, key: String, defaultValue: Int): Int {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
-        return sharedPreferences.getInt(key, defaultValue)
+    fun getBooleanFromStorage(context: Context,key: String, defaultValue: Boolean) : Boolean {
+        return initSharedPref(context).getBoolean(key,defaultValue)
     }
 
     fun openAppLink(context: Context) {

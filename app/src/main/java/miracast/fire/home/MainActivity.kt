@@ -12,10 +12,12 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,15 +29,18 @@ import com.urapp.myappratinglibrary.AppRatingDialog
 import com.urapp.myappratinglibrary.listener.RatingDialogListener
 import miracast.fire.DeviceSpecs
 import miracast.fire.R
+import miracast.fire.Utils.getBooleanFromStorage
 import miracast.fire.Utils.longToast
 import miracast.fire.Utils.openAppLink
+import miracast.fire.Utils.setBooleanToStorage
 import miracast.fire.Utils.shortToast
 import miracast.fire.databinding.ActivityMainBinding
+import miracast.fire.databinding.CustomRatingBarBinding
 import miracast.fire.model.SliderItem
 import miracast.fire.privacy_policy.PrivacyPolicyActivity
 
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var wifiManager: WifiManager
@@ -69,23 +74,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
 
 
     private fun initAll() {
-        sliderAdapter=SliderAdapter(this)
         wifiManager= applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager = applicationContext.getSystemService(ConnectivityManager::class.java)
         }
 
         binding.widiBtn.setOnClickListener(this)
+        setUpSlider()
+
+
+    }
+
+    private fun setUpSlider() {
+        sliderAdapter=SliderAdapter(this)
         binding.imageSlider.setSliderAdapter(sliderAdapter)
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
         binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         binding.imageSlider.startAutoCycle()
 
-        for(i in 1..5) {
-            val sliderItem: SliderItem= SliderItem(R.drawable.ic_launcher, "Test title is:- $i")
-            sliderAdapter.addItem(sliderItem)
-        }
-
+        val sliderItemOne: SliderItem= SliderItem(R.drawable.slider_one, "Slider one title")
+        val sliderItemTwo: SliderItem= SliderItem(R.drawable.slider_two, "Slider two title")
+        val sliderItemThree: SliderItem= SliderItem(R.drawable.slider_three, "Slider three title")
+        sliderAdapter.addItem(sliderItemOne)
+        sliderAdapter.addItem(sliderItemTwo)
+        sliderAdapter.addItem(sliderItemThree)
     }
 
     private fun getConnectedWifiInfo() {
@@ -146,39 +158,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
         }
     }
 
-    override fun onBackPressed() {
-        appFeedbackDialog().monitor()
-        if (appFeedbackDialog().shouldShowRateDialog()) {
-            appFeedbackDialog().showRateDialogIfMeetsConditions()
-        } else {
-            if (doubleBackToExitPressedOnce) {
-                finishAffinity()
-                return
+    private fun createCustomRatingAlertDialog() {
+        val ratingDialogViewBinding: CustomRatingBarBinding= CustomRatingBarBinding.inflate(layoutInflater)
+        val ratingBar: RatingBar=ratingDialogViewBinding.ratingBar
+        ratingBar.onRatingBarChangeListener =
+            RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
+                if (p1 ==5f) {
+                    setBooleanToStorage(this,"IsRatted",true)
+                    openAppLink(this)
+                } else {
+                    shortToast(resources.getString(R.string.thank_you))
+                    super.onBackPressed()
+                }
             }
-            doubleBackToExitPressedOnce = true
-            longToast(resources.getString(R.string.click_back_again))
-            Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
-        }
-    }
 
-    private fun appFeedbackDialog(): AppRatingDialog {
-        return AppRatingDialog.Builder()
-            .setCancelable(false)
-            .setPositiveButtonText(resources.getString(R.string.submit))
-            .setNegativeButtonText(resources.getString(R.string.never))
-            .setNeutralButtonText(resources.getString(R.string.later))
-            .setTitle(resources.getString(R.string.app_feedback_title))
-            .setDescription(resources.getString(R.string.app_feedback_message))
-            .setStarColor(R.color.colorAccent)
-            .setTitleTextColor(R.color.colorWhite)
-            .setDescriptionTextColor(R.color.colorWhite)
-            .setDialogBackgroundColor(R.color.colorGray)
-            .setAfterInstallDay(0)
-            .setDefaultRating(3)
-            .setNumberOfLaunches(1)
-            .setRemindIntervalDay(0)
-            .setCanceledOnTouchOutside(false)
-            .create(this)
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        alertDialog.setCancelable(false)
+        alertDialog.setView(ratingDialogViewBinding.root)
+        if (!isFinishing) {
+            alertDialog.show()
+        }
     }
 
     private fun checkWifiState() {
@@ -243,22 +242,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RatingDialogList
         }
     }
 
-    override fun onNegativeButtonClicked() {
-        shortToast(resources.getString(R.string.thank_you))
-        super.onBackPressed()
-    }
-
-    override fun onNeutralButtonClicked() {
-        shortToast(resources.getString(R.string.thank_you))
-        super.onBackPressed()
-    }
-
-    override fun onPositiveButtonClicked(rate: Int) {
-        if (rate==5) {
-            openAppLink(this)
-        } else{
-            shortToast(resources.getString(R.string.thank_you))
-            super.onBackPressed()
+    override fun onBackPressed() {
+        if (getBooleanFromStorage(this,"IsRatted",false)) {
+            if (doubleBackToExitPressedOnce) {
+                finishAffinity()
+                return
+            }
+            doubleBackToExitPressedOnce = true
+            longToast(resources.getString(R.string.click_back_again))
+            Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+        } else {
+            createCustomRatingAlertDialog()
         }
     }
 

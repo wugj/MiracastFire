@@ -45,13 +45,13 @@ class SliderAdapter(context: Context): SliderViewAdapter<SliderAdapter.SliderAda
 
     override fun onBindViewHolder(viewHolder: SliderAdapterVH, position: Int) {
         val sliderItem: SliderItem = mSliderItems[position]
-        viewHolder.textViewDescription.setText(sliderItem.title)
-        viewHolder.textViewDescription.textSize = 16f
-        viewHolder.textViewDescription.setTextColor(Color.WHITE)
+//        viewHolder.textViewDescription.setText(sliderItem.title)
+//        viewHolder.textViewDescription.textSize = 16f
+//        viewHolder.textViewDescription.setTextColor(Color.WHITE)
         Picasso.get().load(sliderItem.imageUrl).error(R.drawable.ic_launcher).into(viewHolder.imageViewBackground)
-        viewHolder.itemView.setOnClickListener {
-            context.shortToast("This is item in position $position")
-        }
+//        viewHolder.itemView.setOnClickListener {
+//            context.shortToast("This is item in position $position")
+//        }
     }
 
     override fun getCount(): Int {
@@ -62,8 +62,8 @@ class SliderAdapter(context: Context): SliderViewAdapter<SliderAdapter.SliderAda
     class SliderAdapterVH(itemView: View) : SliderViewAdapter.ViewHolder(itemView) {
         var itemView: View=itemView
         var imageViewBackground: ImageView=itemView.findViewById(R.id.iv_auto_image_slider)
-        var imageGifContainer: ImageView=itemView.findViewById(R.id.iv_gif_container)
-        var textViewDescription: TextView=itemView.findViewById(R.id.tv_auto_image_slider)
+//        var imageGifContainer: ImageView=itemView.findViewById(R.id.iv_gif_container)
+//        var textViewDescription: TextView=itemView.findViewById(R.id.tv_auto_image_slider)
 
     }
 }

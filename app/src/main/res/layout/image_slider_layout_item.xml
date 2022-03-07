@@ -4,40 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorTransparent"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/iv_auto_image_slider"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/_210sdp"
         android:scaleType="fitXY" />
 
 
-    <ImageView
-        android:id="@+id/iv_gif_container"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/_45sdp" />
 
-
-    <FrameLayout
-        android:id="@+id/fl_shadow_container"
-        android:background="@drawable/bg_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <TextView
-            android:id="@+id/tv_auto_image_slider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:padding="@dimen/_5sdp"
-            android:textColor="#FFF"
-            android:textSize="@dimen/_16ssp" />
-
-    </FrameLayout>
 
 </FrameLayout>
