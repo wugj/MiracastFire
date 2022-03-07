@@ -1,4 +1,4 @@
-package miracast.fire
+package miracast.of.all.tv
 
 import android.app.Application
 import com.google.firebase.FirebaseApp

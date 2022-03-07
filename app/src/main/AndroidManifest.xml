@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="miracast.fire">
+    package="miracast.of.all.tv">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.setting.permission.ALLSHARE_CAST_SERVICE" />
@@ -20,10 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="miracast.fire.privacy_policy.PrivacyPolicyActivity" />
-        <activity android:name="miracast.fire.home.MainActivity" />
+        <activity android:name=".privacy_policy.PrivacyPolicyActivity" />
+        <activity android:name=".home.MainActivity" />
         <activity
-            android:name="miracast.fire.splash.SplashActivity"
+            android:name=".splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

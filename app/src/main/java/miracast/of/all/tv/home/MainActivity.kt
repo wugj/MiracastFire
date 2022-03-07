@@ -1,7 +1,6 @@
-package miracast.fire.home
+package miracast.of.all.tv.home
 
 import android.Manifest
-import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
 import android.net.*
@@ -9,14 +8,10 @@ import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -25,19 +20,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
-import com.urapp.myappratinglibrary.AppRatingDialog
-import com.urapp.myappratinglibrary.listener.RatingDialogListener
-import miracast.fire.DeviceSpecs
-import miracast.fire.R
-import miracast.fire.Utils.getBooleanFromStorage
-import miracast.fire.Utils.longToast
-import miracast.fire.Utils.openAppLink
-import miracast.fire.Utils.setBooleanToStorage
-import miracast.fire.Utils.shortToast
-import miracast.fire.databinding.ActivityMainBinding
-import miracast.fire.databinding.CustomRatingBarBinding
-import miracast.fire.model.SliderItem
-import miracast.fire.privacy_policy.PrivacyPolicyActivity
+import miracast.of.all.tv.R
+import miracast.of.all.tv.databinding.ActivityMainBinding
+import miracast.of.all.tv.databinding.CustomRatingBarBinding
+import miracast.of.all.tv.Utils.getBooleanFromStorage
+import miracast.of.all.tv.Utils.longToast
+import miracast.of.all.tv.Utils.openAppLink
+import miracast.of.all.tv.Utils.setBooleanToStorage
+import miracast.of.all.tv.Utils.shortToast
+import miracast.of.all.tv.model.SliderItem
+import miracast.of.all.tv.privacy_policy.PrivacyPolicyActivity
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -70,6 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             getConnectedWifiInfo()
         }
 
+
     }
 
 
@@ -86,15 +79,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setUpSlider() {
-        sliderAdapter=SliderAdapter(this)
+        sliderAdapter= SliderAdapter(this)
         binding.imageSlider.setSliderAdapter(sliderAdapter)
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
         binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         binding.imageSlider.startAutoCycle()
 
-        val sliderItemOne: SliderItem= SliderItem(R.drawable.slider_one, "Slider one title")
-        val sliderItemTwo: SliderItem= SliderItem(R.drawable.slider_two, "Slider two title")
-        val sliderItemThree: SliderItem= SliderItem(R.drawable.slider_three, "Slider three title")
+        val sliderItemOne: SliderItem = SliderItem(R.drawable.slider_one, "Slider one title")
+        val sliderItemTwo: SliderItem = SliderItem(R.drawable.slider_two, "Slider two title")
+        val sliderItemThree: SliderItem = SliderItem(R.drawable.slider_three, "Slider three title")
         sliderAdapter.addItem(sliderItemOne)
         sliderAdapter.addItem(sliderItemTwo)
         sliderAdapter.addItem(sliderItemThree)
@@ -159,7 +152,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun createCustomRatingAlertDialog() {
-        val ratingDialogViewBinding: CustomRatingBarBinding= CustomRatingBarBinding.inflate(layoutInflater)
+        val ratingDialogViewBinding: CustomRatingBarBinding = CustomRatingBarBinding.inflate(layoutInflater)
         val ratingBar: RatingBar=ratingDialogViewBinding.ratingBar
         ratingBar.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
@@ -171,6 +164,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     super.onBackPressed()
                 }
             }
+        ratingDialogViewBinding.skipButton.setOnClickListener(this)
 
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
         alertDialog.setCancelable(false)
@@ -239,6 +233,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id) {
             R.id.widiBtn -> checkWifiState()
+            R.id.skipButton -> {
+                shortToast(resources.getString(R.string.thank_you))
+                super.onBackPressed()
+            }
         }
     }
 

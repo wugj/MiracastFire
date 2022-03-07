@@ -48,5 +48,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="50dp" />
-
+    <Button
+        android:id="@+id/skipButton"
+        android:text="Skip Now"
+        android:background="@drawable/button_background"
+        android:paddingStart="@dimen/_30sdp"
+        android:paddingEnd="@dimen/_30sdp"
+        android:layout_width="wrap_content"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content" />
 </LinearLayout>

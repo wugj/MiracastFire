@@ -1,4 +1,4 @@
-package miracast.fire.tv
+package miracast.of.tv
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package miracast.fire
+package miracast.of.all.tv
 
 import android.os.Build
 import android.os.Build.VERSION

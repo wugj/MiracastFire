@@ -1,20 +1,16 @@
-package miracast.fire.splash
+package miracast.of.all.tv.splash
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import miracast.fire.R
-import miracast.fire.databinding.ActivitySplashBinding
-import miracast.fire.home.MainActivity
-import miracast.fire.privacy_policy.PrivacyPolicyActivity
+import miracast.of.all.tv.R
+import miracast.of.all.tv.databinding.ActivitySplashBinding
+import miracast.of.all.tv.home.MainActivity
+import miracast.of.all.tv.privacy_policy.PrivacyPolicyActivity
 
 
 class SplashActivity : AppCompatActivity() {

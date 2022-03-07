@@ -1,19 +1,15 @@
-package miracast.fire.home
+package miracast.of.all.tv.home
 
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
-import miracast.fire.R
-import miracast.fire.Utils.shortToast
-import miracast.fire.model.SliderItem
+import miracast.of.all.tv.R
+import miracast.of.all.tv.model.SliderItem
 
 
 class SliderAdapter(context: Context): SliderViewAdapter<SliderAdapter.SliderAdapterVH>() {

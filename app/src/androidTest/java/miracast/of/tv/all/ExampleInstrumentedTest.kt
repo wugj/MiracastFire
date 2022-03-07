@@ -1,4 +1,4 @@
-package miracast.fire.tv
+package miracast.of.tv
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("miracast.fire.tv", appContext.packageName)
+        assertEquals("miracast.of.all.tv.tv", appContext.packageName)
     }
 }

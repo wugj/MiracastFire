@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:700673255430:android:50031f170e644405ed3b87",
+        "mobilesdk_app_id": "1:700673255430:android:87dea76c3467a43fed3b87",
         "android_client_info": {
-          "package_name": "miracast.fire"
+          "package_name": "miracast.of.all.tv"
         }
       },
       "oauth_client": [

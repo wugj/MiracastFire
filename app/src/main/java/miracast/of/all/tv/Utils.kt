@@ -1,4 +1,4 @@
-package miracast.fire
+package miracast.of.all.tv
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -14,15 +14,15 @@ object Utils {
     var sharedPreferences: SharedPreferences?=null
 
     private fun initSharedPref(context: Context): SharedPreferences {
-        if (sharedPreferences==null) {
-            sharedPreferences=context.getSharedPreferences(preferenceName,MODE_PRIVATE)
+        if (sharedPreferences ==null) {
+            sharedPreferences =context.getSharedPreferences(preferenceName,MODE_PRIVATE)
         }
         return sharedPreferences!!
     }
 
 
     fun setBooleanToStorage(context: Context,key: String, value: Boolean) {
-        val editor: SharedPreferences.Editor=initSharedPref(context).edit()
+        val editor: SharedPreferences.Editor= initSharedPref(context).edit()
         editor.putBoolean(key,value)
         editor.apply()
     }

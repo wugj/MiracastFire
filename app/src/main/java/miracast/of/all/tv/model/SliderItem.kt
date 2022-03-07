@@ -1,4 +1,4 @@
-package miracast.fire.model
+package miracast.of.all.tv.model
 
 data class SliderItem(
     val imageUrl: Int,

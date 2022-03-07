@@ -1,12 +1,12 @@
-package miracast.fire.privacy_policy
+package miracast.of.all.tv.privacy_policy
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import miracast.fire.R
-import miracast.fire.databinding.ActivityPrivacyPolicyBinding
+import miracast.of.all.tv.R
+import miracast.of.all.tv.databinding.ActivityPrivacyPolicyBinding
 
 
 class PrivacyPolicyActivity : AppCompatActivity(), View.OnClickListener {
