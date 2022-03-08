@@ -1,4 +1,4 @@
-package miracast.of.tv
+package a.screenmirroring.tv
 
 import org.junit.Test
 

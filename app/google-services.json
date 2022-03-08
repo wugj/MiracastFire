@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "700673255430",
-    "project_id": "miracastfire",
-    "storage_bucket": "miracastfire.appspot.com"
+    "project_number": "493293384722",
+    "project_id": "all-tv-screen-mirroring-pro",
+    "storage_bucket": "all-tv-screen-mirroring-pro.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:700673255430:android:87dea76c3467a43fed3b87",
+        "mobilesdk_app_id": "1:493293384722:android:1427fe8236092edda714cb",
         "android_client_info": {
-          "package_name": "miracast.of.all.tv"
+          "package_name": "a.screenmirroring"
         }
       },
       "oauth_client": [
         {
-          "client_id": "700673255430-lkdn59fatag0s31ddjdki292v8vk1r24.apps.googleusercontent.com",
+          "client_id": "493293384722-kd3flc1tor1ddu4ml4sed6edaetipogc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAMa5yi5pybVZheIPNCiQVIzKEJH2LuMLc"
+          "current_key": "AIzaSyCkr-U9UgjKVoOUs3pSkcUGnx4gQeOHp1c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "700673255430-lkdn59fatag0s31ddjdki292v8vk1r24.apps.googleusercontent.com",
+              "client_id": "493293384722-kd3flc1tor1ddu4ml4sed6edaetipogc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

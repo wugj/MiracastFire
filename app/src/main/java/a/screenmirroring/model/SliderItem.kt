@@ -1,4 +1,4 @@
-package miracast.of.all.tv.model
+package a.screenmirroring.model
 
 data class SliderItem(
     val imageUrl: Int,

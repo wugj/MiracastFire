@@ -1,4 +1,4 @@
-package miracast.of.all.tv
+package a.screenmirroring
 
 import android.content.ActivityNotFoundException
 import android.content.Context

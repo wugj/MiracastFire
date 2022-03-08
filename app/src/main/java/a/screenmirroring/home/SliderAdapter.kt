@@ -1,4 +1,4 @@
-package miracast.of.all.tv.home
+package a.screenmirroring.home
 
 
 import android.content.Context
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
-import miracast.of.all.tv.R
-import miracast.of.all.tv.model.SliderItem
+import a.screenmirroring.R
+import a.screenmirroring.model.SliderItem
 
 
 class SliderAdapter(context: Context): SliderViewAdapter<SliderAdapter.SliderAdapterVH>() {

@@ -1,4 +1,4 @@
-package miracast.of.tv
+package a.screenmirroring.tv
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("miracast.of.all.tv.tv", appContext.packageName)
+        assertEquals("a.screenmirroring.tv", appContext.packageName)
     }
 }

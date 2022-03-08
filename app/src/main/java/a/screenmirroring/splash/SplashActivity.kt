@@ -1,4 +1,4 @@
-package miracast.of.all.tv.splash
+package a.screenmirroring.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import miracast.of.all.tv.R
-import miracast.of.all.tv.databinding.ActivitySplashBinding
-import miracast.of.all.tv.home.MainActivity
-import miracast.of.all.tv.privacy_policy.PrivacyPolicyActivity
+import a.screenmirroring.R
+import a.screenmirroring.databinding.ActivitySplashBinding
+import a.screenmirroring.home.MainActivity
+import a.screenmirroring.privacy_policy.PrivacyPolicyActivity
 
 
 class SplashActivity : AppCompatActivity() {

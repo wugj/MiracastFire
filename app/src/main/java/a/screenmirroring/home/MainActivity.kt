@@ -1,4 +1,4 @@
-package miracast.of.all.tv.home
+package a.screenmirroring.home
 
 import android.Manifest
 import android.content.*
@@ -20,16 +20,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
-import miracast.of.all.tv.R
-import miracast.of.all.tv.databinding.ActivityMainBinding
-import miracast.of.all.tv.databinding.CustomRatingBarBinding
-import miracast.of.all.tv.Utils.getBooleanFromStorage
-import miracast.of.all.tv.Utils.longToast
-import miracast.of.all.tv.Utils.openAppLink
-import miracast.of.all.tv.Utils.setBooleanToStorage
-import miracast.of.all.tv.Utils.shortToast
-import miracast.of.all.tv.model.SliderItem
-import miracast.of.all.tv.privacy_policy.PrivacyPolicyActivity
+import a.screenmirroring.R
+import a.screenmirroring.databinding.ActivityMainBinding
+import a.screenmirroring.databinding.CustomRatingBarBinding
+import a.screenmirroring.Utils.getBooleanFromStorage
+import a.screenmirroring.Utils.longToast
+import a.screenmirroring.Utils.openAppLink
+import a.screenmirroring.Utils.setBooleanToStorage
+import a.screenmirroring.Utils.shortToast
+import a.screenmirroring.model.SliderItem
+import a.screenmirroring.privacy_policy.PrivacyPolicyActivity
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             getConnectedWifiInfo()
         }
+
 
 
     }
