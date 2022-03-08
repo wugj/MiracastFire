@@ -42,15 +42,15 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:max="5"
-        android:stepSize="1"
+        android:numStars="5"
+        android:stepSize="1.0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="50dp" />
     <Button
         android:id="@+id/skipButton"
-        android:text="Skip Now"
+        android:text="Exit Now"
         android:background="@drawable/button_background"
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_30sdp"
